@@ -2,8 +2,14 @@ import typing
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.infraestructure.database.config.dynamodb import create_table, get_dynamodb_client
+
 
 app = FastAPI()
+
+
+client = get_dynamodb_client()
+create_table(client)
 
 
 app.add_middleware(

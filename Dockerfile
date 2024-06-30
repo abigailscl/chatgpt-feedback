@@ -18,4 +18,4 @@ RUN poetry install --no-root
 
 COPY . .
 
-CMD ["fastapi" ,  "run", "app/infraestructure/api/main.py", "--port", "8000", "--reload"]
+CMD ["fastapi" ,  "run", "app/infraestructure/api/main.py", "--port", "4000", "--reload"]
