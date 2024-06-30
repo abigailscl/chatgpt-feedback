@@ -1,6 +1,12 @@
 version: '3.8'
 
 services:
+  dynamodb:
+    image: amazon/dynamodb-local
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+
   chatgpt-feedback:
     build:
       context: .
@@ -8,4 +14,28 @@ services:
     volumes:
       - .:/app
     ports:
-      - "8000:8000"
+      - "4000:4000"
+    env_file:
+      - .env
+    depends_on:
+      - "dynamodb"
+    links:
+      - "dynamodb"
+    environment:
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      REGION: ${REGION}
+
+  dynamodb_test:
+    image: amazon/dynamodb-local
+    container_name: dynamodb-local-test
+    ports:
+      - "8001:8001"
+    volumes:
+      - dynamodb_test_data:/home/dynamodblocal/data
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath /home/dynamodblocal/data"
+
+volumes:
+  dynamodb_test_data:
+    driver: local
+

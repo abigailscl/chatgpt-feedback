@@ -9,7 +9,7 @@ help:
 
 docker-up:
 	sudo docker-compose build --no-cache
-	sudo docker-compose up
+	sudo docker-compose up -d
 
 run-test:
 	docker-compose run --rm chatgpt-feedback pytest $(FILE)
