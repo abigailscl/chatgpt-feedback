@@ -7,10 +7,7 @@ client = TestClient(app)
 
 
 def test__health_check():
-    expected_response = {
-        "name": "AI Feedback",
-        "version": "0.0.1"
-    }
+    expected_response = {"name": "AI Feedback", "version": "0.0.1"}
 
     response = client.get("/health-check")
 
