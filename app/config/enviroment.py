@@ -11,8 +11,8 @@ class Settings:
     URL_DATABASE: str = os.getenv("URL_DATABASE")
     SECRET_KEY: str = os.getenv("JWT_SECRET_KEY")
     ALGORITHM: str = os.getenv("JWT_ALGORITHM")
+    print('__mintes__', os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 30))
     ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 30))
-    print('__mintes__', ACCESS_TOKEN_EXPIRE_MINUTES)
 
 
 settings = Settings()
