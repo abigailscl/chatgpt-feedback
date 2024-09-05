@@ -22,22 +22,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .envc
+          REGION: ${{ secrets.REGION }}" >> .envc
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}" >> .envc
+          JWT_ALGORITHM: ${{ secrets.JWT_ALGORITHM }}" >> .envc
+          ACCESS_TOKEN_EXPIRE_MINUTES: ${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}" >> .envc
+          URL_DATABASE: ${{ secrets.URL_DATABASE }}" >> .envc
 
       - name: Install Docker Compose
         run: |
           sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
           docker-compose version
-
-      - name: Create .env file from GitHub Secrets
-        run: |
-          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> .env
-          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .env
-          echo "REGION=${{ secrets.REGION }}" >> .env
-          echo "JWT_SECRET_KEY=${{ secrets.JWT_SECRET_KEY }}" >> .env
-          echo "JWT_ALGORITHM=${{ secrets.JWT_ALGORITHM }}" >> .env
-          echo "ACCESS_TOKEN_EXPIRE_MINUTES=${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}" >> .env
-          echo "URL_DATABASE=${{ secrets.URL_DATABASE }}" >> .env
 
       - name: Run Tests
         run: docker-compose run --rm chatgpt-feedback pytest .
