@@ -24,12 +24,12 @@ jobs:
         uses: actions/checkout@v2
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> .envc
-          REGION: ${{ secrets.REGION }}" >> .envc
-          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}" >> .envc
-          JWT_ALGORITHM: ${{ secrets.JWT_ALGORITHM }}" >> .envc
-          ACCESS_TOKEN_EXPIRE_MINUTES: ${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}" >> .envc
-          URL_DATABASE: ${{ secrets.URL_DATABASE }}" >> .envc
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          REGION: ${{ secrets.REGION }}
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+          JWT_ALGORITHM: ${{ secrets.JWT_ALGORITHM }}
+          ACCESS_TOKEN_EXPIRE_MINUTES: ${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}
+          URL_DATABASE: ${{ secrets.URL_DATABASE }}
 
       - name: Install Docker Compose
         run: |
