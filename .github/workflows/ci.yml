@@ -40,9 +40,6 @@ jobs:
           echo "ACCESS_TOKEN_EXPIRE_MINUTES=${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}" >> .env
         shell: bash
 
-      - name: Debug .env file
-        run: cat .env
-
       - name: Run Tests
         run: docker-compose run --rm chatgpt-feedback pytest .
 
